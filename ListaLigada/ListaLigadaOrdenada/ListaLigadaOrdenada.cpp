@@ -70,7 +70,7 @@ void menu()
 
 void inicializar()
 {
-	// se a lista já possuir elementos
+	// se a lista jï¿½ possuir elementos
 // libera a memoria ocupada
 	NO* aux = primeiro;
 	while (aux != NULL) {
@@ -147,6 +147,27 @@ void excluirElemento()
 
 void buscarElemento()
 {
+	if (primeiro == NULL) {
+		cout << "Lista vazia \n";
+		return;
+	}
+	else {
+		int elementoEscolhido;
+		cout << "Digite o elemento que deseja buscar: ";
+		cin >> elementoEscolhido;
+
+		NO* aux = primeiro;
+			while (aux != NULL && aux->valor <= elementoEscolhido) {
+			if (aux->valor == elementoEscolhido) {
+				cout << "O elemento esta na lista.\n";
+				return;
+			}
+			aux = aux->prox;
+		}
+		cout << "O elemento nao esta na lista.\n";
+	}
+}
+
 
 }
 

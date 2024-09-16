@@ -69,7 +69,7 @@ void menu()
 
 void inicializar()
 {
-	// se a lista já possuir elementos
+	// se a lista jï¿½ possuir elementos
 // libera a memoria ocupada
 	NO* aux = primeiro;
 	while (aux != NULL) {
@@ -115,6 +115,7 @@ void inserirElemento()
 {
 	// aloca memoria dinamicamente para o novo elemento
 	NO* novo = (NO*)malloc(sizeof(NO));
+	NO* ultimo
 	if (novo == NULL)
 	{
 		return;
@@ -123,19 +124,15 @@ void inserirElemento()
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
 	novo->prox = NULL;
-
-	if (primeiro == NULL)
+		if (primeiro == NULL)
 	{
 		primeiro = novo;
+		ultimo = novo;
 	}
 	else
 	{
-		// procura o final da lista
-		NO* aux = primeiro;
-		while (aux->prox != NULL) {
-			aux = aux->prox;
-		}
-		aux->prox = novo;
+		ultimo->prox = novo;
+		ultimo = novo;
 	}
 }
 
