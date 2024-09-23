@@ -125,24 +125,54 @@ void inserirElemento()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
-	if (primeiro == NULL)
-	{
-		primeiro = novo;
-	}
-	else
-	{
-		// procura o final da lista
-		NO* aux = primeiro;
-		while (aux->prox != NULL) {
-			aux = aux->prox;
-		}
-		aux->prox = novo;
-	}
+    if (primeiro == NULL) {
+        primeiro = novo;
+    } else if (novo->valor < primeiro->valor) {
+        novo->prox = primeiro;
+        primeiro = novo;
+    } else {
+        NO* aux = primeiro;
+        while (aux->prox != NULL && aux->prox->valor < novo->valor) {
+            aux = aux->prox;
+        }
+        novo->prox = aux->prox;
+        aux->prox = novo;
+    }
 }
+
 
 void excluirElemento()
 {
+	if (primeiro == NULL) {
+	cout << "Lista vazia \n";
+	return;
+	}
+	else {
+	int elementoEscolhido;
+	cout << "Qual elemento deseja excluir? : ";
+	cin >> elementoEscolhido;
 
+	NO* aux = primeiro;
+	NO* anterior = NULL;
+	while (aux != NULL) {
+		NO* paraExcluir = aux;
+		if (aux->valor == elementoEscolhido) {
+			if (anterior == NULL) {
+				primeiro = aux->prox;
+			}
+			else {
+				anterior->prox = aux->prox;
+			}
+			free(paraExcluir);
+			cout << "Elemento excluido com sucesso\n";
+			return;
+			}
+
+			anterior = aux;
+			aux = aux->prox;
+		}
+		cout << "O elemento nao esta na lista \n";
+	}
 }
 
 void buscarElemento()
